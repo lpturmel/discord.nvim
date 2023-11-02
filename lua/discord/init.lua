@@ -3,8 +3,17 @@ local fn = vim.fn
 local api = vim.api
 local jobstart = vim.fn.jobstart
 local jobsend = vim.fn.jobsend
+local loop = vim.loop
 
-local binary_path = "nvim-discord"
+local binary_name = "nvim-discord"
+
+local os_name = loop.os_uname().sysname
+local binary_path
+if os_name == "Windows_NT" then
+  binary_path = binary_name .. ".exe"
+else
+  binary_path = binary_name
+end
 
 local M = {}
 
