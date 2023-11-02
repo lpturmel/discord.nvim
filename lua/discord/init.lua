@@ -6,6 +6,8 @@ local jobsend = vim.fn.jobsend
 
 local binary_path = "nvim-discord"
 
+local M = {}
+
 -- Function to send the current file name to the binary
 local function send_current_file_name()
   local current_file = api.nvim_buf_get_name(0)
@@ -35,8 +37,13 @@ local function send_current_file_name()
   jobsend(_G.binary_job_id, json_message .. "\n")
 end
 
--- Autocommand that triggers when the buffer is entered
-api.nvim_create_autocmd("BufEnter", {
-  pattern = "*",
-  callback = send_current_file_name
-})
+
+function M.setup()
+    -- Autocommand that triggers when the buffer is entered
+    api.nvim_create_autocmd("BufEnter", {
+      pattern = "*",
+      callback = send_current_file_name
+    })
+end
+
+return M
