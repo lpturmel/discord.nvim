@@ -14,3 +14,5 @@ Lazy:
     end
 }
 ```
+
+This plugin requires the [rpc server](https://github.com/lpturmel/nvim-discord)
